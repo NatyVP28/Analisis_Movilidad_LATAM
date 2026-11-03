@@ -1,85 +1,113 @@
-# Analysis_Everpeak_
+# 🚦 Movilidad urbana y productividad económica en LATAM
 
-Urban Mobility & Economic Productivity Analysis in LATAM
+Análisis de la relación entre la congestión vehicular y la productividad económica (PIB per cápita) en 15 ciudades de Latinoamérica, para identificar cuáles podrían ser prioritarias para invertir en infraestructura de transporte.
 
-📌 **Project Overview**
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-150458?logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C)
+![Seaborn](https://img.shields.io/badge/Seaborn-4C72B0)
 
-This project analyzes the relationship between urban mobility and economic productivity in major Latin American (LATAM) cities. Using traffic congestion and economic indicators datasets, the study explores whether mobility conditions such as congestion, travel delays, and traffic intensity are associated with economic performance indicators like GDP per capita, unemployment, and population.
+---
 
-The main objective is to identify which cities may present stronger opportunities for future investment in transport infrastructure based on mobility efficiency and economic productivity.
+## 🎯 Objetivo
 
-🎯 **Objectives**
-Clean and prepare urban mobility and economic datasets.
-Analyze traffic congestion patterns across major LATAM cities.
-Explore the relationship between mobility indicators and economic productivity.
-Visualize trends and correlations between traffic and economic variables.
-Generate a clean and reproducible dataset for future analysis.
+Responder una pregunta de negocio: **¿las ciudades con mayor PIB per cápita también tienen más congestión, o no existe una relación clara?**
 
-📂 **Datasets Used**
-1. TomTom Traffic Dataset
+Para eso, el proyecto:
 
-Contains urban mobility and traffic congestion metrics, including:
+- Limpia y prepara los datasets de movilidad y economía.
+- Analiza los patrones de congestión en ciudades de LATAM.
+- Explora la relación entre los indicadores de movilidad y de productividad económica.
+- Genera un dataset limpio y reproducible para análisis posteriores.
 
-Traffic Index
-Traffic Delay
-Traffic Congestion Levels
-Jam Length (km)
-Jam Count
-Update Time
+---
 
-2. OECD City Economy Dataset
+## 📂 Estructura del repositorio
 
-Contains economic and demographic indicators such as:
+```
+├── README.md
+├── Mobility_economy_project.ipynb   # Limpieza, unión de datos, análisis y conclusiones
+└── images/                          # Gráficos usados en este README
+```
 
-GDP per capita
-Unemployment percentage
-Population
-PM2.5 air pollution levels
-Year
+---
 
-🛠️ **Technologies & Libraries**
-The project was developed in Python using the following libraries:
+## 🗃️ Datos
 
-pandas
-numpy
-matplotlib
-seaborn
+| Dataset | Contenido |
+|---------|-----------|
+| **TomTom Traffic** | Más de 1 millón de registros de tráfico por ciudad: índice de tráfico, retraso por congestión (`jams_delay`), longitud y número de atascos, y tiempos de viaje |
+| **OECD City Economy** | PIB per cápita, desempleo, población y contaminación (PM2.5) por ciudad y año |
 
-Environment:
+**Cobertura:** año 2024 · 15 ciudades · 7 países (Argentina, Brasil, Chile, Colombia, México, Perú y Uruguay).
 
-Jupyter Notebook
+---
 
-🔄 **Project Workflow**
+## 🔍 Metodología
 
-1. Data Loading & Exploration
-Imported mobility and economic datasets.
-Reviewed data structure, columns, and data types.
-Identified missing values and formatting inconsistencies.
-2. Data Cleaning & Preparation
-Standardized column names using snake_case.
-Converted date columns to datetime format.
-Corrected numeric columns stored as strings.
-Filtered records for the year 2024.
-3. Mobility Analysis
-Calculated annual traffic averages by city.
-Measured congestion and delay patterns.
-Identified the cities with the highest congestion levels.
-4. Data Integration
-Merged mobility and economic datasets using city and year as keys.
-Created a unified dataset for analysis.
-5. Visualization & Insights
+1. **Exploración:** revisión de estructura, tipos de datos y valores faltantes.
+2. **Limpieza:**
+   - Nombres de columnas en `snake_case`.
+   - Fechas convertidas a `datetime`.
+   - Columnas numéricas guardadas como texto (separadores de miles, comas decimales y `%`) convertidas a `float`.
+   - Población convertida a unidades absolutas.
+3. **Filtrado y agregación:** registros de 2024 y promedios anuales de tráfico por ciudad.
+4. **Integración:** unión `inner` de tráfico y economía por ciudad y año, para comparar solo las ciudades presentes en ambos datasets.
+5. **Visualización:** boxplots, histogramas y gráficos comparativos para revisar distribuciones, outliers y la relación entre variables.
 
-Generated visualizations including:
+---
 
-Boxplots
-Histograms
-Scatterplots
-Comparative city charts
+## 📊 Resultados clave
 
-These visualizations helped identify trends between congestion levels and economic indicators.
+### Ciudad de México es la ciudad más congestionada
 
-📊 **Key Findings**
-Mexico City presented the highest average traffic congestion among the analyzed cities.
-No strong linear relationship was observed between GDP per capita and traffic congestion.
-Some cities with high GDP per capita showed low congestion levels, while others presented severe mobility problems.
-Certain lower-income cities also experienced high congestion, suggesting that mobility challenges are influenced by multiple factors beyond economic productivity.
+![Congestión promedio por ciudad](images/congestion_por_ciudad.png)
+
+| Ciudad | Retraso por congestión (min) | PIB per cápita (USD) |
+|--------|-----------------------------:|---------------------:|
+| Ciudad de México | 2.833 | 21.111 |
+| São Paulo | 1.729 | 14.703 |
+| Bogotá | 1.142 | 11.442 |
+| Lima | 1.052 | 13.472 |
+| Santiago | 630 | 2.277 |
+
+- Ciudad de México es un valor atípico: su retraso por congestión es más de 4 veces el promedio (630 min).
+- 8 de las 15 ciudades tienen un retraso por congestión de entre 100 y 800 min.
+
+### No hay una relación clara entre PIB y congestión
+
+![PIB per cápita vs. congestión](images/pib_vs_congestion.png)
+
+- Hay ciudades con PIB alto y poca congestión, como Montevideo y Brasilia, y otras con PIB alto y mucha congestión, como Ciudad de México.
+- Ciudades de ingreso medio, como Bogotá y Lima, también tienen congestión alta.
+- 8 de las 15 ciudades tienen un PIB per cápita de entre 10.000 y 17.000 USD, pero con niveles de congestión muy distintos.
+- Una correlación de Pearson calculada para este README confirma la observación visual: es débil y no significativa (r = 0,28; p = 0,31).
+
+Esto indica que la congestión depende de varios factores además de la productividad económica, como el tamaño de la ciudad, la infraestructura o el transporte público.
+
+---
+
+## 💡 Recomendaciones
+
+1. **Santiago de Chile aparece como candidata prioritaria** para invertir en infraestructura de transporte: combina el PIB per cápita más bajo del dataset con una congestión alta. Antes de decidir conviene validar su dato de PIB (2.277 USD), que es atípicamente bajo.
+2. **Analizar por separado las ciudades atípicas**, como Ciudad de México.
+3. **Ampliar el análisis a varios años** e incluir otras variables, como población o transporte público, para explicar mejor la congestión.
+
+---
+
+## ▶️ Cómo reproducirlo
+
+```bash
+pip install pandas numpy matplotlib seaborn jupyter
+jupyter notebook Mobility_economy_project.ipynb
+```
+
+> Los datasets se trabajaron en la plataforma del curso (ruta `/datasets/`). Para ejecutar el notebook en otro entorno, descarga los datos de TomTom Traffic Index y OECD y ajusta las rutas de carga.
+
+---
+
+## 👩‍💻 Autora
+
+**Natalia Viloria** · Data Analyst
+📧 natalia.viloria2@gmail.com
