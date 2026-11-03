@@ -70,7 +70,9 @@ Para eso, el proyecto:
 | São Paulo | 1.729 | 14.703 |
 | Bogotá | 1.142 | 11.442 |
 | Lima | 1.052 | 13.472 |
-| Santiago | 630 | 2.277 |
+| Santiago | 630 | 2.277 ⚠️ |
+
+> ⚠️ **Posible error en los datos:** el PIB per cápita de Santiago (2.277 USD) es inconsistente con las fuentes públicas, que ubican el de Chile entre 17.000 y 20.000 USD nominales, y Santiago concentra buena parte de la actividad económica del país. No fue posible validarlo contra el archivo original, así que se mantiene en el análisis pero no se usa para las recomendaciones.
 
 - Ciudad de México es un valor atípico: su retraso por congestión es más de 4 veces el promedio (630 min).
 - 8 de las 15 ciudades tienen un retraso por congestión de entre 100 y 800 min.
@@ -90,9 +92,10 @@ Esto indica que la congestión depende de varios factores además de la producti
 
 ## 💡 Recomendaciones
 
-1. **Santiago de Chile aparece como candidata prioritaria** para invertir en infraestructura de transporte: combina el PIB per cápita más bajo del dataset con una congestión alta. Antes de decidir conviene validar su dato de PIB (2.277 USD), que es atípicamente bajo.
-2. **Analizar por separado las ciudades atípicas**, como Ciudad de México.
-3. **Ampliar el análisis a varios años** e incluir otras variables, como población o transporte público, para explicar mejor la congestión.
+1. **Bogotá y Lima aparecen como candidatas prioritarias** para invertir en infraestructura de transporte: tienen una congestión alta (1.142 y 1.052 min) con un PIB per cápita medio (11.442 y 13.472 USD). Es decir, sufren problemas de movilidad comparables a los de ciudades más ricas, con menos recursos económicos.
+2. **Validar el dato de PIB de Santiago** antes de incluirla en cualquier decisión de inversión.
+3. **Analizar por separado las ciudades atípicas**, como Ciudad de México.
+4. **Ampliar el análisis a varios años** e incluir otras variables, como población o transporte público, para explicar mejor la congestión.
 
 ---
 
