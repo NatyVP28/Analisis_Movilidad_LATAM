@@ -72,6 +72,8 @@ Para eso, el proyecto:
 | Lima | 1.052 | 13.472 |
 | Santiago | 630 | 2.277 ⚠️ |
 
+> **Cómo leer el retraso por congestión:** `jams_delay` es la suma de los minutos de retraso de todos los atascos activos en la ciudad en cada medición de TomTom. La tabla muestra el **promedio de esas mediciones en 2024**, no el retraso por viaje ni el total del año. Es una medida absoluta: crece con el tamaño de la ciudad y de su red vial.
+
 > ⚠️ **Posible error en los datos:** el PIB per cápita de Santiago (2.277 USD) es inconsistente con las fuentes públicas, que ubican el de Chile entre 17.000 y 20.000 USD nominales, y Santiago concentra buena parte de la actividad económica del país. No fue posible validarlo contra el archivo original, así que se mantiene en el análisis pero no se usa para las recomendaciones.
 
 - Ciudad de México es un valor atípico: su retraso por congestión es más de 4 veces el promedio (630 min).
@@ -96,6 +98,7 @@ Esto indica que la congestión depende de varios factores además de la producti
 2. **Validar el dato de PIB de Santiago** antes de incluirla en cualquier decisión de inversión.
 3. **Analizar por separado las ciudades atípicas**, como Ciudad de México.
 4. **Ampliar el análisis a varios años** e incluir otras variables, como población o transporte público, para explicar mejor la congestión.
+5. **Normalizar la congestión por tamaño de ciudad** (por habitante o por km de vía) antes de comparar: como `jams_delay` es absoluto, las ciudades más grandes tienden a mostrar valores mayores.
 
 ---
 
@@ -114,3 +117,4 @@ jupyter notebook Mobility_economy_project.ipynb
 
 **Natalia Viloria** · Data Analyst
 📧 natalia.viloria2@gmail.com
+🔗 [LinkedIn](https://www.linkedin.com/in/natalia-j-viloria-p%C3%A9rez-845b695a)
